@@ -36,7 +36,8 @@ class App extends Component {
   render () {
     let initialRouteName = this.props.currentUser ? 'Houses' : 'Login'
     let Navigation = StackNavigator(Routes, {
-      initialRouteName
+      initialRouteName,
+      headerMode: 'screen'
     })
 
     return <Navigation />
