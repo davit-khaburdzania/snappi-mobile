@@ -5,13 +5,22 @@ class Root extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={[styles.row, styles.header]}>
-          <Text style={styles.logoText}>Snappi</Text>
-        </View>
-        <View style={[styles.row, styles.loginContainer]}>
+        <View style={styles.formContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder='Name'
+            placeholderTextColor='#8B999F'
+            autoCapitalize='none'
+          />
           <TextInput
             style={styles.input}
             placeholder='Email'
+            placeholderTextColor='#8B999F'
+            autoCapitalize='none'
+          />
+          <TextInput
+            style={styles.input}
+            placeholder='Cell Number'
             placeholderTextColor='#8B999F'
             autoCapitalize='none'
           />
@@ -21,13 +30,20 @@ class Root extends Component {
             placeholderTextColor='#8B999F'
             secureTextEntry
           />
+          <TextInput
+            style={styles.input}
+            placeholder='Confirm Password'
+            placeholderTextColor='#8B999F'
+            secureTextEntry
+          />
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>SIGN IN</Text>
+            <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
           </TouchableOpacity>
         </View>
-        <View style={[styles.row, styles.noAccountContainer]}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Signup')}>
-            <Text style={styles.noAccountText}>Don’t have an account?</Text>
+
+        <View style={styles.haveAccountContainer}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+            <Text style={styles.haveAccountText}>Already have an account ?</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -38,23 +54,12 @@ class Root extends Component {
 let styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1F5F6'
-  },
-  row: {
-    flex: 1
-  },
-  header: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  logoText: {
-    marginTop: 50,
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 48,
-    color: '#4E6BC8'
-  },
-  loginContainer: {
+    backgroundColor: '#F1F5F6',
     padding: 30
+  },
+  formContainer: {
+    flex: 4,
+    justifyContent: 'center'
   },
   input: {
     alignSelf: 'stretch',
@@ -78,12 +83,13 @@ let styles = StyleSheet.create({
     letterSpacing: 2,
     color: '#FFF'
   },
-  noAccountContainer: {
+  haveAccountContainer: {
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
-  noAccountText: {
-    marginBottom: 40,
+  haveAccountText: {
+    marginBottom: 10,
     fontSize: 16,
     fontFamily: 'OpenSans-Semibold',
     letterSpacing: 1.5,
