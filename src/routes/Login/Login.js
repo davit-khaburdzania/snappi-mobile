@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 
 class Root extends Component {
+  state = {
+    email: '',
+    password: ''
+  }
+
+  onSubmit () {
+    this.props.loginUser({ email: this.state.email, password: this.state.password })
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -14,14 +23,16 @@ class Root extends Component {
             placeholder='Email'
             placeholderTextColor='#8B999F'
             autoCapitalize='none'
+            onChangeText={email => this.setState({ email })}
           />
           <TextInput
             style={styles.input}
             placeholder='Password'
             placeholderTextColor='#8B999F'
             secureTextEntry
+            onChangeText={password => this.setState({ password })}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={this.onSubmit.bind(this)}>
             <Text style={styles.buttonText}>SIGN IN</Text>
           </TouchableOpacity>
         </View>

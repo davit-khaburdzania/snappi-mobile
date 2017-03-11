@@ -17,7 +17,7 @@ export const signUpUser = payload => async dispatch => {
   let userData = response.data.data
   let authData = {
     id: userData.id,
-    token: response.headers['access-token'],
+    auth_token: response.headers['access-token'],
     uid: response.headers['uid'],
     client: response.headers['client']
   }
@@ -33,10 +33,17 @@ export const updateUser = (id, payload) => async dispatch => {
 }
 
 export const loginUser = payload => async dispatch => {
-  let { data } = await request.post(api.login(), payload)
+  let response = await request.post(api.signin(), payload)
+  let userData = response.data.data
+  let authData = {
+    id: userData.id,
+    auth_token: response.headers['access-token'],
+    uid: response.headers['uid'],
+    client: response.headers['client']
+  }
 
-  reduceUsers([data], dispatch)
-  dispatch(setCurrentUser(data))
+  reduceUsers([userData], dispatch)
+  dispatch(setCurrentUser(authData))
 }
 
 export const validateToken = () => async dispatch => {
@@ -44,7 +51,7 @@ export const validateToken = () => async dispatch => {
   let userData = response.data.data
   let authData = {
     id: userData.id,
-    auth_token: response.headers['access-token'],
+    auth_auth_token: response.headers['access-token'],
     uid: response.headers['uid'],
     client: response.headers['client']
   }

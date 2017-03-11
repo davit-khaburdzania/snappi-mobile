@@ -25,9 +25,8 @@ class SignupScreen extends Component {
 
   componentWillReceiveProps (nextProps) {
     let user = nextProps.currentUser
-    console.log(user)
 
-    if (user && user.auth_token) {
+    if (user && user.id) {
       this.props.navigation.navigate('Uploads', { fromSignUp: true })
     }
   }

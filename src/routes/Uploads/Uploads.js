@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
 
 class Root extends Component {
   render () {
     return (
-      <Text>Login Screen</Text>
+      <TouchableOpacity onPress={() => this.props.logoutUser()}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
     )
   }
 }
