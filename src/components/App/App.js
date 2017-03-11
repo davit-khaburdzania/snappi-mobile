@@ -15,7 +15,7 @@ let enhancer = connect(connectState, connectProps)
 class App extends Component {
   static propTypes = {
     currentUser: ImmutablePropTypes.record,
-    getMe: PropTypes.func.isRequired
+    validateToken: PropTypes.func.isRequired
   }
 
   componentWillMount () {
@@ -25,16 +25,20 @@ class App extends Component {
   async reAuthenticateUser () {
     try {
       let token = await AsyncStorage.getItem('auth_token')
+      let uid = await AsyncStorage.getItem('uid')
+      let client = await AsyncStorage.getItem('client')
 
       if (!this.props.currentUser && token) {
-        request.defaults.headers.common['AUTH-TOKEN'] = token
-        this.props.getMe()
+        request.defaults.headers.common['access-token'] = token
+        request.defaults.headers.common['uid'] = uid
+        request.defaults.headers.common['client'] = client
+        this.props.validateToken()
       }
     } catch (error) {}
   }
 
   render () {
-    let initialRouteName = this.props.currentUser ? 'Houses' : 'Login'
+    let initialRouteName = this.props.currentUser ? 'Uploads' : 'Login'
     let Navigation = StackNavigator(Routes, {
       initialRouteName,
       headerMode: 'screen'

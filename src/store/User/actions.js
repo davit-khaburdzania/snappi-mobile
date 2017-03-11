@@ -3,7 +3,7 @@ import { setToken, unsetToken, reduceUsers } from './helpers'
 import api from 'app/store/api'
 
 export const setCurrentUser = user => {
-  setToken(user.auth_token)
+  setToken(user.auth_token, user.uid, user.client)
   return { type: 'SET_CURRENT_USER', id: user.id }
 }
 
@@ -13,10 +13,17 @@ export const logoutUser = () => {
 }
 
 export const signUpUser = payload => async dispatch => {
-  let { data } = await request.post(api.users(), { user: payload })
+  let response = await request.post(api.signup(), payload)
+  let userData = response.data.data
+  let authData = {
+    id: userData.id,
+    token: response.headers['access-token'],
+    uid: response.headers['uid'],
+    client: response.headers['client']
+  }
 
-  reduceUsers([data], dispatch)
-  dispatch(setCurrentUser(data))
+  reduceUsers([userData], dispatch)
+  dispatch(setCurrentUser(authData))
 }
 
 export const updateUser = (id, payload) => async dispatch => {
@@ -32,11 +39,19 @@ export const loginUser = payload => async dispatch => {
   dispatch(setCurrentUser(data))
 }
 
-export const getMe = () => async dispatch => {
-  const { data } = await request.get(api.me())
+export const validateToken = () => async dispatch => {
+  let response = await request.get(api.validateToken())
+  let userData = response.data.data
+  let authData = {
+    id: userData.id,
+    auth_token: response.headers['access-token'],
+    uid: response.headers['uid'],
+    client: response.headers['client']
+  }
+  console.log(userData, authData)
 
-  reduceUsers([data], dispatch)
-  dispatch(setCurrentUser(data))
+  reduceUsers([userData], dispatch)
+  dispatch(setCurrentUser(authData))
 }
 
 export const updateUserInStore = (id, data) => {

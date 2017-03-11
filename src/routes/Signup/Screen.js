@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { AlertActions, UserActions } from 'app/store/actions'
+import { UserSelectors } from 'app/store/selectors'
 import Signup from './Signup'
 
-export default class SignupScreen extends Component {
+let connectProps = { ...UserActions, ...AlertActions }
+let connectState = state => ({ currentUser: UserSelectors.current(state) })
+let enhancer = connect(connectState, connectProps)
+
+class SignupScreen extends Component {
   static navigationOptions = {
     header: () => ({
       title: 'Create account',
@@ -16,7 +23,18 @@ export default class SignupScreen extends Component {
     })
   }
 
+  componentWillReceiveProps (nextProps) {
+    let user = nextProps.currentUser
+    console.log(user)
+
+    if (user && user.auth_token) {
+      this.props.navigation.navigate('Uploads', { fromSignUp: true })
+    }
+  }
+
   render () {
     return <Signup {...this.props} />
   }
 }
+
+export default enhancer(SignupScreen)

@@ -2,6 +2,25 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 
 class Root extends Component {
+  state = {
+    name: '',
+    email: '',
+    cell_number: '',
+    password: '',
+    password_confirmation: ''
+  }
+
+  onSubmit () {
+    let state = this.state
+    let payload = { ...this.state, uid: state.email }
+
+    if (state.password !== state.password_confirmation) {
+      return console.error('passwords dont match')
+    }
+
+    this.props.signUpUser(payload)
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -11,32 +30,42 @@ class Root extends Component {
             placeholder='Name'
             placeholderTextColor='#8B999F'
             autoCapitalize='none'
+            value={this.state.name}
+            onChangeText={name => this.setState({ name })}
           />
           <TextInput
             style={styles.input}
             placeholder='Email'
             placeholderTextColor='#8B999F'
             autoCapitalize='none'
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
           />
           <TextInput
             style={styles.input}
             placeholder='Cell Number'
             placeholderTextColor='#8B999F'
             autoCapitalize='none'
+            value={this.state.cell_number}
+            onChangeText={cellNumber => this.setState({ cell_number: cellNumber })}
           />
           <TextInput
             style={styles.input}
             placeholder='Password'
             placeholderTextColor='#8B999F'
             secureTextEntry
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
           />
           <TextInput
             style={styles.input}
             placeholder='Confirm Password'
             placeholderTextColor='#8B999F'
             secureTextEntry
+            value={this.state.password_confirmation}
+            onChangeText={confirmation => this.setState({ password_confirmation: confirmation })}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={this.onSubmit.bind(this)}>
             <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
           </TouchableOpacity>
         </View>

@@ -12,18 +12,26 @@ export const reduceUsers = (data, dispatch) => {
   dispatch({ type: 'RECEIVE_USERS', users })
 }
 
-export const setToken = async token => {
-  request.defaults.headers.common['AUTH-TOKEN'] = token
+export const setToken = async (token, uid, client) => {
+  request.defaults.headers.common['access-token'] = token
+  request.defaults.headers.common['uid'] = uid
+  request.defaults.headers.common['uid'] = client
 
   try {
     await AsyncStorage.setItem('auth_token', token)
+    await AsyncStorage.setItem('uid', uid)
+    await AsyncStorage.setItem('client', client)
   } catch (error) {}
 }
 
 export const unsetToken = async () => {
   request.defaults.headers.common['AUTH-TOKEN'] = null
+  request.defaults.headers.common['uid'] = null
+  request.defaults.headers.common['client'] = null
 
   try {
     await AsyncStorage.removeItem('auth_token')
+    await AsyncStorage.removeItem('uid')
+    await AsyncStorage.removeItem('client')
   } catch (error) {}
 }
