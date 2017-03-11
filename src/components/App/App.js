@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import { View, AsyncStorage } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import { AsyncStorage } from 'react-native'
 import request from 'axios'
+import { MessageBar, MessageBarManager } from 'react-native-message-bar'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import Routes from 'app/routes'
@@ -20,6 +21,14 @@ class App extends Component {
 
   componentWillMount () {
     this.reAuthenticateUser()
+  }
+
+  componentDidMount () {
+    MessageBarManager.registerMessageBar(this.refs.alert)
+  }
+
+  componentWillUnmount () {
+    MessageBarManager.unregisterMessageBar()
   }
 
   async reAuthenticateUser () {
@@ -44,7 +53,12 @@ class App extends Component {
       headerMode: 'screen'
     })
 
-    return <Navigation />
+    return (
+      <View style={{ flex: 1 }}>
+        <Navigation />
+        <MessageBar ref='alert' />
+      </View>
+    )
   }
 }
 

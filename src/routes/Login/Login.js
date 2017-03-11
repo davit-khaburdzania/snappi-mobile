@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import Alertable from 'app/components/Alert/Alert'
 
 class Root extends Component {
   state = {
@@ -102,4 +103,4 @@ let styles = StyleSheet.create({
   }
 })
 
-export default Root
+export default Alertable(Root)
