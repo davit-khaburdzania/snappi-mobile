@@ -12,9 +12,9 @@ class SignupScreen extends Component {
   static navigationOptions = {
     header: () => ({
       title: 'Create account',
-      tintColor: '#8B999F',
+      tintColor: '#FFF',
       style: {
-        backgroundColor: '#FFF'
+        backgroundColor: '#007EE5'
       },
       titleStyle: {
         fontFamily: 'OpenSans-Semibold',

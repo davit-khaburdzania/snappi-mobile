@@ -51,11 +51,10 @@ export const validateToken = () => async dispatch => {
   let userData = response.data.data
   let authData = {
     id: userData.id,
-    auth_auth_token: response.headers['access-token'],
+    auth_token: response.headers['access-token'],
     uid: response.headers['uid'],
     client: response.headers['client']
   }
-  console.log(userData, authData)
 
   reduceUsers([userData], dispatch)
   dispatch(setCurrentUser(authData))

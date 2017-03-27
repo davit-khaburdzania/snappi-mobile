@@ -15,7 +15,7 @@ export const reduceUsers = (data, dispatch) => {
 export const setToken = async (token, uid, client) => {
   request.defaults.headers.common['access-token'] = token
   request.defaults.headers.common['uid'] = uid
-  request.defaults.headers.common['uid'] = client
+  request.defaults.headers.common['client'] = client
 
   try {
     await AsyncStorage.setItem('auth_token', token)
@@ -25,7 +25,7 @@ export const setToken = async (token, uid, client) => {
 }
 
 export const unsetToken = async () => {
-  request.defaults.headers.common['AUTH-TOKEN'] = null
+  request.defaults.headers.common['access-token'] = null
   request.defaults.headers.common['uid'] = null
   request.defaults.headers.common['client'] = null
 

@@ -5,7 +5,6 @@ class Root extends Component {
   state = {
     name: '',
     email: '',
-    cell_number: '',
     password: '',
     password_confirmation: ''
   }
@@ -43,14 +42,6 @@ class Root extends Component {
           />
           <TextInput
             style={styles.input}
-            placeholder='Cell Number'
-            placeholderTextColor='#8B999F'
-            autoCapitalize='none'
-            value={this.state.cell_number}
-            onChangeText={cellNumber => this.setState({ cell_number: cellNumber })}
-          />
-          <TextInput
-            style={styles.input}
             placeholder='Password'
             placeholderTextColor='#8B999F'
             secureTextEntry
@@ -68,6 +59,9 @@ class Root extends Component {
           <TouchableOpacity style={styles.button} onPress={this.onSubmit.bind(this)}>
             <Text style={styles.buttonText}>CREATE ACCOUNT</Text>
           </TouchableOpacity>
+          <Text style={styles.terms}>
+            By creating an account you agree  to the Terms of use
+          </Text>
         </View>
 
         <View style={styles.haveAccountContainer}>
@@ -104,13 +98,21 @@ let styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     height: 50,
-    backgroundColor: '#4E6BC8'
+    backgroundColor: '#007EE5'
   },
   buttonText: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 16,
     letterSpacing: 2,
     color: '#FFF'
+  },
+  terms: {
+    fontFamily: 'OpenSans-Semibold',
+    fontSize: 14,
+    color: '#8B999F',
+    letterSpacing: 1.5,
+    paddingTop: 20,
+    textAlign: 'center'
   },
   haveAccountContainer: {
     flex: 1,

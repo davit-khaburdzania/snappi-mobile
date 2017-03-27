@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import Alertable from 'app/components/Alert/Alert'
+import logoImg from 'assets/img/logo.png'
 
 class Root extends Component {
   state = {
@@ -16,7 +17,7 @@ class Root extends Component {
     return (
       <View style={styles.container}>
         <View style={[styles.row, styles.header]}>
-          <Text style={styles.logoText}>Snappi</Text>
+          <Image source={logoImg} style={styles.logo} />
         </View>
         <View style={[styles.row, styles.loginContainer]}>
           <TextInput
@@ -35,6 +36,9 @@ class Root extends Component {
           />
           <TouchableOpacity style={styles.button} onPress={this.onSubmit.bind(this)}>
             <Text style={styles.buttonText}>SIGN IN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.forgotPassword}>Forgot Password</Text>
           </TouchableOpacity>
         </View>
         <View style={[styles.row, styles.noAccountContainer]}>
@@ -57,13 +61,12 @@ let styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: 30
   },
-  logoText: {
-    marginTop: 50,
-    fontFamily: 'OpenSans-Bold',
-    fontSize: 48,
-    color: '#4E6BC8'
+  logo: {
+    width: 150,
+    height: 150
   },
   loginContainer: {
     padding: 30
@@ -82,7 +85,7 @@ let styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     height: 50,
-    backgroundColor: '#4E6BC8'
+    backgroundColor: '#007EE5'
   },
   buttonText: {
     fontFamily: 'OpenSans-Bold',
@@ -100,6 +103,14 @@ let styles = StyleSheet.create({
     fontFamily: 'OpenSans-Semibold',
     letterSpacing: 1.5,
     color: '#888'
+  },
+  forgotPassword: {
+    paddingTop: 20,
+    textAlign: 'center',
+    fontFamily: 'OpenSans-Semibold',
+    fontSize: 14,
+    color: '#8B999F',
+    letterSpacing: 1.75
   }
 })
 

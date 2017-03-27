@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 
-import User from './User/reducers'
 import Alert from './Alert/reducers'
+import User from './User/reducers'
+import Attachment from './Attachment/reducers'
 
 const appReducer = combineReducers({
+  Alert,
   User,
-  Alert
+  Attachment
 })
 
 const rootReducer = (state, action) => {
