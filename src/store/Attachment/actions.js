@@ -10,3 +10,9 @@ export const getAttachments = () => async dispatch => {
   reduceAttachments(attachments, dispatch)
   dispatch({ type: 'RECEIVE_ATTACHMENT_METADATA', meta: Map(data.meta) })
 }
+
+export const removeAttachment = id => async dispatch => {
+  await request.delete(api.attachment(id))
+
+  dispatch({ type: 'REMOVE_ATTACHMENT', id })
+}

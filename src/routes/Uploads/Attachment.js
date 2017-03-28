@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet, Clipboard } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import TimeAgo from 'react-native-timeago'
 import copyIcon from 'assets/img/copy-icon.png'
 import noImage from 'assets/img/no-image.png'
 
 class Attachment extends Component {
+  onPress () {
+    this.props.navigation.navigate('Attachment', { id: this.props.attachment.id })
+  }
+
   render () {
     const { attachment } = this.props
     const url = attachment.url('normal')
     const source = attachment.token ? { uri: url } : noImage
+    const createdAt = attachment.created_at * 1000
 
     return (
-      <TouchableOpacity style={styles.imageContainer} key={attachment.id}>
+      <TouchableOpacity style={styles.imageContainer} onPress={this.onPress.bind(this)}>
         <Image source={source} style={styles.image} />
         <View style={styles.infoContainer}>
           <Text style={styles.hoursAgo}>
-            <TimeAgo time={attachment.created_at * 1000} />
+            <TimeAgo time={createdAt} />
           </Text>
           <TouchableOpacity onPress={() => Clipboard.setString(url)}>
             <Image source={copyIcon} style={styles.copyIcon} />
@@ -56,4 +62,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Attachment
+export default withNavigation(Attachment)
