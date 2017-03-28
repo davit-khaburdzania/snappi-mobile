@@ -16,3 +16,11 @@ export const removeAttachment = id => async dispatch => {
 
   dispatch({ type: 'REMOVE_ATTACHMENT', id })
 }
+
+export const toggleMenu = () => {
+  return { type: 'TOGGLE_MENU_OPEN' }
+}
+
+export const setMenu = isOpen => {
+  return { type: 'SET_MENU', isOpen }
+}

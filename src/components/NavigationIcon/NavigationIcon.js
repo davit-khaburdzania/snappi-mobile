@@ -1,7 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 class NavigationIcon extends Component {
+  static propTypes = {
+    image: PropTypes.number.isRequired,
+    path: PropTypes.string,
+    navigate: PropTypes.func,
+    onPress: PropTypes.func,
+    params: PropTypes.object
+  }
+
   onPress () {
     const { path, navigate, params } = this.props
 
@@ -11,10 +19,10 @@ class NavigationIcon extends Component {
   }
 
   render () {
-    let { image } = this.props
+    let { image, onPress } = this.props
 
     return (
-      <TouchableOpacity style={styles.container} onPress={this.onPress.bind(this)}>
+      <TouchableOpacity style={styles.container} onPress={onPress || this.onPress.bind(this)}>
         <Image style={styles.icon} source={image} />
       </TouchableOpacity>
     )

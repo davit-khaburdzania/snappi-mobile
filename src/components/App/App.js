@@ -1,16 +1,21 @@
 import React, { Component, PropTypes } from 'react'
-import { View, AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import { connect } from 'react-redux'
 import request from 'axios'
 import { MessageBar, MessageBarManager } from 'react-native-message-bar'
 import { StackNavigator } from 'react-navigation'
-import { connect } from 'react-redux'
+import SideMenu from 'react-native-side-menu'
+import { Menu } from 'app/components'
 import Routes from 'app/routes'
-import { UserActions } from 'app/store/actions'
-import { UserSelectors } from 'app/store/selectors'
+import { UserActions, AttachmentActions } from 'app/store/actions'
+import { UserSelectors, AttachmentSelectors } from 'app/store/selectors'
 
-let connectProps = {...UserActions}
-let connectState = state => ({ currentUser: UserSelectors.current(state) })
+let connectProps = {...UserActions, ...AttachmentActions}
+let connectState = state => ({
+  currentUser: UserSelectors.current(state),
+  menuOpen: AttachmentSelectors.menuOpen(state)
+})
 let enhancer = connect(connectState, connectProps)
 
 class App extends Component {
@@ -47,17 +52,22 @@ class App extends Component {
   }
 
   render () {
-    let initialRouteName = this.props.currentUser ? 'Uploads' : 'Login'
-    let Navigation = StackNavigator(Routes, {
+    const initialRouteName = this.props.currentUser ? 'Uploads' : 'Login'
+    const Navigation = StackNavigator(Routes, {
       initialRouteName,
-      headerMode: 'screen'
+      headerMode: 'float'
     })
 
     return (
-      <View style={{ flex: 1 }}>
+      <SideMenu
+        menu={<Menu isOpen={this.props.menuOpen} logoutUser={this.props.logoutUser} />}
+        isOpen={this.props.menuOpen}
+        onMove={() => this.props.setMenu(true)}
+        onChange={isOpen => this.props.setMenu(isOpen)}
+      >
         <Navigation />
         <MessageBar ref='alert' />
-      </View>
+      </SideMenu>
     )
   }
 }

@@ -25,10 +25,17 @@ function attachmentsReducer (state = Map(), action) {
   }
 }
 
-function metaReducer (state = Map(), action) {
+function metaReducer (state = Map({ menuOpen: false }), action) {
   switch (action.type) {
     case 'RECEIVE_ATTACHMENT_METADATA':
       return state.merge(action.meta)
+
+    case 'TOGGLE_MENU_OPEN':
+      console.log(state.menuOpen)
+      return state.set('menuOpen', !state.menuOpen)
+
+    case 'SET_MENU':
+      return state.set('menuOpen', action.isOpen)
 
     default:
       return state

@@ -11,10 +11,12 @@ let enhancer = connect(connectState, connectProps)
 class LoginScreen extends Component {
   static navigationOptions = {
     header: () => ({
-      visible: false
+      style: {
+        backgroundColor: '#F1F5F6',
+        borderBottomWidth: 0
+      }
     })
   }
-
 
   componentWillReceiveProps (nextProps) {
     let user = nextProps.currentUser

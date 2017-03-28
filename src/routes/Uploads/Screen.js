@@ -16,6 +16,12 @@ let connectState = state => ({
 })
 let enhancer = connect(connectState, connectProps)
 
+const MenuIcon = ({ toggleMenu }) => (
+  <NavigationIcon image={menuIcon} onPress={() => toggleMenu()} />
+)
+
+const MenuComponent = connect(null, connectProps)(MenuIcon)
+
 class LoginScreen extends Component {
   static navigationOptions = {
     header: () => ({
@@ -24,7 +30,7 @@ class LoginScreen extends Component {
         backgroundColor: '#007EE5'
       },
       title: <Image source={logoImg} style={{ width: 35, height: 35 }} />,
-      left: <NavigationIcon image={menuIcon} />,
+      left: <MenuComponent />,
       right: <NavigationIcon image={addIcon} />
     })
   }

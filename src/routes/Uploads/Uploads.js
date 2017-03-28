@@ -35,7 +35,6 @@ class Root extends Component {
   render () {
     return (
       <View style={styles.container}>
-
         <ListView
           horizontal={false}
           showsHorizontalScrollIndicator={false}
@@ -44,9 +43,6 @@ class Root extends Component {
           dataSource={this.state.dataSource}
           renderRow={attachment => <Attachment attachment={new AttachmentRecord(attachment)} />}
         />
-        <TouchableOpacity style={styles.logoutContainer} onPress={() => this.props.logoutUser()}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
       </View>
     )
   }
