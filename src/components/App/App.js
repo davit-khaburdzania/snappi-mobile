@@ -5,16 +5,14 @@ import { connect } from 'react-redux'
 import request from 'axios'
 import { MessageBar, MessageBarManager } from 'react-native-message-bar'
 import { StackNavigator } from 'react-navigation'
-import SideMenu from 'react-native-side-menu'
-import { Menu } from 'app/components'
+import { SideMenu } from 'app/components'
 import Routes from 'app/routes'
 import { UserActions, AttachmentActions } from 'app/store/actions'
-import { UserSelectors, AttachmentSelectors } from 'app/store/selectors'
+import { UserSelectors } from 'app/store/selectors'
 
 let connectProps = {...UserActions, ...AttachmentActions}
 let connectState = state => ({
-  currentUser: UserSelectors.current(state),
-  menuOpen: AttachmentSelectors.menuOpen(state)
+  currentUser: UserSelectors.current(state)
 })
 let enhancer = connect(connectState, connectProps)
 
@@ -55,16 +53,11 @@ class App extends Component {
     const initialRouteName = this.props.currentUser ? 'Uploads' : 'Login'
     const Navigation = StackNavigator(Routes, {
       initialRouteName,
-      headerMode: 'float'
+      headerMode: 'screen'
     })
 
     return (
-      <SideMenu
-        menu={<Menu isOpen={this.props.menuOpen} logoutUser={this.props.logoutUser} />}
-        isOpen={this.props.menuOpen}
-        onMove={() => this.props.setMenu(true)}
-        onChange={isOpen => this.props.setMenu(isOpen)}
-      >
+      <SideMenu>
         <Navigation />
         <MessageBar ref='alert' />
       </SideMenu>

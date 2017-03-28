@@ -3,7 +3,7 @@ import Root from './Root/Root'
 import Alert from './Alert/Alert'
 import NavigationIcon from './NavigationIcon/NavigationIcon'
 import ImageFooter from './ImageFooter/ImageFooter'
-import Menu from './Menu/Menu'
+import SideMenu from './SideMenu/SideMenu'
 
 export {
   App,
@@ -11,5 +11,5 @@ export {
   Alert,
   NavigationIcon,
   ImageFooter,
-  Menu
+  SideMenu
 }
