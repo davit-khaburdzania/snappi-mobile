@@ -15,14 +15,22 @@ const enhancer = connect(connectState, connectProps)
 
 class AttachmentScreen extends Component {
   static navigationOptions = {
-    header: ({ state }) => {
+    header: ({ state, navigate }) => {
       return {
         tintColor: '#FFF',
         style: {
           backgroundColor: '#007EE5'
         },
+        backTitle: null,
         title: 'Image',
-        right: <NavigationIcon image={infoIcon} />
+        right: (
+          <NavigationIcon
+            navigate={navigate}
+            image={infoIcon}
+            path='AttachmentInfo'
+            params={{ id: state.params.id }}
+          />
+        )
       }
     }
   }
