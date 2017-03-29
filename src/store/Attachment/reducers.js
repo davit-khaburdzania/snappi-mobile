@@ -31,7 +31,6 @@ function metaReducer (state = Map({ menuOpen: false }), action) {
       return state.merge(action.meta)
 
     case 'TOGGLE_MENU_OPEN':
-      console.log(state.menuOpen)
       return state.set('menuOpen', !state.menuOpen)
 
     case 'SET_MENU':

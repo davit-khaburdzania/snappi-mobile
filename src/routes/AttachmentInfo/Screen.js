@@ -24,7 +24,6 @@ class AttachmentInfoScreen extends Component {
   }
 
   render () {
-    console.log('movidaa')
     return <AttachmentInfo {...this.props} />
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   Dimensions,
   StyleSheet,
@@ -19,20 +19,19 @@ import arrowRightBlueIcon from 'assets/img/arrow-right-blue-icon.png'
 import logoImage from 'assets/img/logo.png'
 
 class Menu extends Component {
-  state = { renderMenu: false }
-
-  componentDidMount () {
-    this.setState({ renderMenu: true })
+  static propTypes = {
+    menuOpen: PropTypes.bool.isRequired,
+    logoutUser: PropTypes.func.isRequired
   }
 
   render () {
-    const { logoutUser } = this.props
-    const mainStyle = {
-      opacity: this.props.isOpen ? 1 : 0
+    const { menuOpen, logoutUser } = this.props
+    const menuStyle = {
+      opacity: menuOpen ? 1 : 0
     }
 
     return (
-      <ScrollView scrollsToTop={false} style={[styles.menu, mainStyle]}>
+      <ScrollView scrollsToTop={false} style={[styles.menu, menuStyle]}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Menu</Text>
         </View>

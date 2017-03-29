@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import SideMenu from 'react-native-side-menu'
+import Drawer from 'react-native-drawer'
 import Menu from './Menu'
 import { UserActions, AttachmentActions } from 'app/store/actions'
 import { UserSelectors, AttachmentSelectors } from 'app/store/selectors'
@@ -13,16 +13,26 @@ let connectState = state => ({
 let enhancer = connect(connectState, connectProps)
 
 class SideMenuContainer extends Component {
+  static propTypes = {
+    menuOpen: PropTypes.bool.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    setMenu: PropTypes.func.isRequired
+  }
+
   render () {
+    const { menuOpen, setMenu, logoutUser } = this.props
+
     return (
-      <SideMenu
-        menu={<Menu isOpen={this.props.menuOpen} logoutUser={this.props.logoutUser} />}
-        isOpen={this.props.menuOpen}
-        onMove={() => this.props.setMenu(true)}
-        onChange={isOpen => this.props.setMenu(isOpen)}
+      <Drawer
+        content={<Menu menuOpen={menuOpen} logoutUser={logoutUser} />}
+        openDrawerOffset={100}
+        tweenHandler={Drawer.tweenPresets.parallax}
+        open={menuOpen}
+        tapToClose
+        onClose={() => setMenu(false)}
       >
         {this.props.children}
-      </SideMenu>
+      </Drawer>
     )
   }
 }
