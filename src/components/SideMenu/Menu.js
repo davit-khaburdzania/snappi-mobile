@@ -29,6 +29,7 @@ class Menu extends Component {
     const menuStyle = {
       opacity: menuOpen ? 1 : 0
     }
+    console.log(this.props.navigation)
 
     return (
       <ScrollView scrollsToTop={false} style={[styles.menu, menuStyle]}>

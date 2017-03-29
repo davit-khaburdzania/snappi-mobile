@@ -23,6 +23,13 @@ export default class Attachment extends AttachmentRecord {
     return `${this.base_url}/uploads/${type}/file/${this.id}/${suffix}${this.filename}${this.extension}`
   }
 
+  thumb () {
+    let suffix = this.type === 'video' ? 'thumb_video_' : 'normal_'
+    let extension = (this.type === 'video' || this.type === 'gif_image') ? '.png' : this.extension
+
+    return `${this.base_url}/uploads/${this.type}/file/${this.id}/${suffix}${this.filename}${extension}`
+  }
+
   attachmentType () {
     switch (this.type) {
       case 'gif_image':

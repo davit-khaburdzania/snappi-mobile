@@ -12,7 +12,7 @@ class Attachment extends Component {
 
   render () {
     const { attachment } = this.props
-    const url = attachment.url('normal')
+    const url = attachment.thumb()
     const source = attachment.token ? { uri: url } : noImage
     const createdAt = attachment.created_at * 1000
 

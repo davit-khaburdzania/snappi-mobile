@@ -23,7 +23,7 @@ class Attachment extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: attachment.url('original') }} style={styles.image} />
+          <Image source={{ uri: attachment.thumb() }} style={styles.image} />
         </View>
         <ImageFooter
           attachment={attachment}

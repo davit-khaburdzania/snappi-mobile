@@ -8,5 +8,7 @@ export const list = createSelector(
   [all],
   (attachments) => {
     return attachments.toList()
+      .sortBy(attch => attch.created_at)
+      .reverse()
   }
 )

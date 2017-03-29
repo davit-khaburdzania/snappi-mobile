@@ -25,7 +25,7 @@ class AttachmentInfo extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: attachment.url('medium') }} style={styles.image} />
+          <Image source={{ uri: attachment.thumb() }} style={styles.image} />
           <Text style={styles.nameText}>{attachment.name}</Text>
         </View>
         <View style={styles.detailsContainer}>
