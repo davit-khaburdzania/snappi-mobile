@@ -31,11 +31,12 @@ class Menu extends Component {
       return console.log('go to favorites')
     }
 
-    this.props.setMenu(false)
     this.props.navigate({
-      routeName: 'Uploads',
+      routeName: 'Attachments',
       params: { filter }
     })
+
+    this.props.setMenu(false)
   }
 
   render () {
@@ -50,7 +51,7 @@ class Menu extends Component {
           <Text style={styles.headerText}>Menu</Text>
         </View>
         <View style={styles.body}>
-          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('all')}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto()}>
             <Image source={windowsIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>All Snaps</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
@@ -60,17 +61,17 @@ class Menu extends Component {
             <Text style={styles.menuText}>Favorites</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('images')}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('image')}>
             <Image source={imageIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>Images</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('gifs')}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('gif')}>
             <Image source={gifIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>GIFs</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('videos')}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('video')}>
             <Image source={videoIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>Videos</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />

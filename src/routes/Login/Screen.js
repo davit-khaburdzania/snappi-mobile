@@ -36,7 +36,7 @@ class LoginScreen extends Component {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'Uploads', params: { fromSignin: true } })
+        NavigationActions.navigate({ routeName: 'Attachments', params: { fromSignin: true } })
       ]
     })
 

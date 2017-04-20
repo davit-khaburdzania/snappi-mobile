@@ -3,8 +3,10 @@ import { Map } from 'immutable'
 import { reduceAttachments } from './helpers'
 import api from 'app/store/api'
 
-export const getAttachments = () => async dispatch => {
-  const { data } = await request.get(api.attachments())
+export const getAttachments = (filter = '') => async dispatch => {
+  const url = `${api.attachments()}?filter=${filter}`
+  const { data } = await request.get(url)
+
   const attachments = data.attachments.map(attch => ({...attch, base_url: data.meta.base_url}))
 
   reduceAttachments(attachments, dispatch)

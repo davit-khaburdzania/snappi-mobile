@@ -7,3 +7,14 @@ export const reduceAttachments = (data, dispatch) => {
 
   dispatch({ type: 'RECEIVE_ATTACHMENTS', attachments })
 }
+
+export const tranformType = (type = 'all') => {
+  const types = {
+    all: null,
+    image: 'image',
+    gif: 'gif_image',
+    video: 'video'
+  }
+
+  return types[type]
+}

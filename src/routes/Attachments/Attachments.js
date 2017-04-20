@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, ListView } from 'react-native'
+import { View, StyleSheet, ListView } from 'react-native'
 import { Attachment as AttachmentRecord } from 'app/store/records'
 import Attachment from './Attachment'
 
-class Root extends Component {
+class Attachments extends Component {
   constructor (props) {
     super(props)
 
@@ -26,10 +26,6 @@ class Root extends Component {
       let data = nextProps.attachments.toJS()
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(data) })
     }
-  }
-
-  componentDidMount () {
-    this.props.getAttachments()
   }
 
   render () {
@@ -63,4 +59,4 @@ let styles = StyleSheet.create({
   }
 })
 
-export default Root
+export default Attachments
