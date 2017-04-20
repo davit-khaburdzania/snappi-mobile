@@ -4,9 +4,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import request from 'axios'
 import { MessageBar, MessageBarManager } from 'react-native-message-bar'
-import { StackNavigator } from 'react-navigation'
 import { SideMenu } from 'app/components'
-import Routes from 'app/routes'
+import AppNavigation from './AppNavigation'
 import { UserActions, AttachmentActions } from 'app/store/actions'
 import { UserSelectors } from 'app/store/selectors'
 
@@ -50,15 +49,9 @@ class App extends Component {
   }
 
   render () {
-    const initialRouteName = this.props.currentUser ? 'Uploads' : 'Login'
-    const Navigation = StackNavigator(Routes, {
-      initialRouteName,
-      headerMode: 'screen'
-    })
-
     return (
       <SideMenu>
-        <Navigation />
+        <AppNavigation />
         <MessageBar ref='alert' />
       </SideMenu>
     )

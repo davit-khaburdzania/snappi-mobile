@@ -21,7 +21,21 @@ import logoImage from 'assets/img/logo.png'
 class Menu extends Component {
   static propTypes = {
     menuOpen: PropTypes.bool.isRequired,
-    logoutUser: PropTypes.func.isRequired
+    logoutUser: PropTypes.func.isRequired,
+    setMenu: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired
+  }
+
+  goto (filter) {
+    if (filter === 'favorites') {
+      return console.log('go to favorites')
+    }
+
+    this.props.setMenu(false)
+    this.props.navigate({
+      routeName: 'Uploads',
+      params: { filter }
+    })
   }
 
   render () {
@@ -29,7 +43,6 @@ class Menu extends Component {
     const menuStyle = {
       opacity: menuOpen ? 1 : 0
     }
-    console.log(this.props.navigation)
 
     return (
       <ScrollView scrollsToTop={false} style={[styles.menu, menuStyle]}>
@@ -37,27 +50,27 @@ class Menu extends Component {
           <Text style={styles.headerText}>Menu</Text>
         </View>
         <View style={styles.body}>
-          <TouchableOpacity style={styles.menuRow}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('all')}>
             <Image source={windowsIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>All Snaps</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('favorites')}>
             <Image source={starIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>Favorites</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('images')}>
             <Image source={imageIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>Images</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('gifs')}>
             <Image source={gifIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>GIFs</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuRow}>
+          <TouchableOpacity style={styles.menuRow} onPress={() => this.goto('videos')}>
             <Image source={videoIcon} style={styles.menuIcon} />
             <Text style={styles.menuText}>Videos</Text>
             <Image source={arrowRightIcon} style={styles.arrow} />
