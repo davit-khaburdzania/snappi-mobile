@@ -3,7 +3,8 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 
 class Root extends Component {
   state = {
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password_confirmation: ''
@@ -26,11 +27,19 @@ class Root extends Component {
         <View style={styles.formContainer}>
           <TextInput
             style={styles.input}
+            placeholder='First Name'
+            placeholderTextColor='#8B999F'
+            autoCapitalize='none'
+            value={this.state.first_name}
+            onChangeText={name => this.setState({ first_name: name })}
+          />
+          <TextInput
+            style={styles.input}
             placeholder='Name'
             placeholderTextColor='#8B999F'
             autoCapitalize='none'
-            value={this.state.name}
-            onChangeText={name => this.setState({ name })}
+            value={this.state.last_name}
+            onChangeText={name => this.setState({ last_name: name })}
           />
           <TextInput
             style={styles.input}

@@ -33,6 +33,7 @@ export default class Attachment extends AttachmentRecord {
   attachmentType () {
     switch (this.type) {
       case 'gif_image':
+        return 'gif_image'
       case 'image':
         return 'image'
       case 'video':

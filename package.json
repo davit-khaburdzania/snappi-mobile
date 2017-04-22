@@ -18,6 +18,7 @@
 		"react-native-drawer": "^2.3.0",
 		"react-native-message-bar": "^1.6.0",
 		"react-native-timeago": "^0.3.0",
+		"react-native-video": "^1.0.0",
 		"react-navigation": "^1.0.0-beta.6",
 		"react-redux": "^5.0.3",
 		"redux": "^3.6.0",
@@ -42,8 +43,7 @@
 	},
 	"standard": {
 		"parser": "babel-eslint",
-		"plugins": [
-		],
+		"plugins": [],
 		"globals": [
 			"it"
 		]

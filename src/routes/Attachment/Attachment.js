@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
+import Video from 'react-native-video'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { ImageFooter } from 'app/components'
 
@@ -19,11 +20,15 @@ class Attachment extends Component {
 
   render () {
     const { attachment } = this.props
-
+    console.log(attachment.type === 'video')
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: attachment.thumb() }} style={styles.image} />
+          {
+            attachment.type === 'video'
+            ? <Video source={{ uri: attachment.url() }} resizeMode='contain' paused={false} style={styles.video} />
+            : <Image source={{ uri: attachment.url() }} style={styles.image} />
+          }
         </View>
         <ImageFooter
           attachment={attachment}
@@ -49,7 +54,14 @@ let styles = StyleSheet.create({
   },
   image: {
     height: 250
-  }
+  },
+  video: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
 })
 
 export default Attachment

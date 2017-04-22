@@ -7,8 +7,6 @@ export const reduceUsers = (data, dispatch) => {
   let normalized = normalize(data, arrayOf(Schemas.user), {})
   let users = normalized.entities.users
 
-  // let images = normalized.entities.images
-  // dispatch({ type: 'RECEIVE_IMAGES', images })
   dispatch({ type: 'RECEIVE_USERS', users })
 }
 

@@ -3,7 +3,8 @@ import { Record } from 'immutable'
 const UserRecord = Record({
   id: null,
   uid: '',
-  name: '',
+  first_name: '',
+  last_name: '',
   email: '',
   phone: ''
 })
