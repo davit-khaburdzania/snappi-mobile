@@ -6,6 +6,7 @@ class Root extends Component {
     first_name: '',
     last_name: '',
     email: '',
+    cell_number: '',
     password: '',
     password_confirmation: ''
   }
@@ -48,6 +49,14 @@ class Root extends Component {
             autoCapitalize='none'
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder='Cell Number'
+            placeholderTextColor='#8B999F'
+            autoCapitalize='none'
+            value={this.state.cell_number}
+            onChangeText={cell => this.setState({ cell_number: cell })}
           />
           <TextInput
             style={styles.input}

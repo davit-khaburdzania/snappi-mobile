@@ -6,7 +6,7 @@ const UserRecord = Record({
   first_name: '',
   last_name: '',
   email: '',
-  phone: ''
+  cell_number: ''
 })
 
 export default class User extends UserRecord {

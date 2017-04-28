@@ -8,6 +8,7 @@ class Attachment extends Component {
   static propTypes = {
     attachment: ImmutablePropTypes.record.isRequired,
     removeAttachment: PropTypes.func.isRequired,
+    updateAttachment: PropTypes.func.isRequired,
     navigation: PropTypes.object.isRequired
   }
 
@@ -19,8 +20,8 @@ class Attachment extends Component {
   }
 
   render () {
-    const { attachment } = this.props
-    console.log(attachment.type === 'video')
+    const { attachment, updateAttachment } = this.props
+
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
@@ -31,6 +32,7 @@ class Attachment extends Component {
           }
         </View>
         <ImageFooter
+          updateAttachment={updateAttachment}
           attachment={attachment}
           remove={this.remove.bind(this)}
         />
