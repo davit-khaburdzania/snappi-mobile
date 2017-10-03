@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import Alertable from 'app/components/Alert/Alert'
-import logoImg from 'assets/img/logo.png'
+import logoImg from 'app/assets/img/logo.png'
 
 class Root extends Component {
   state = {

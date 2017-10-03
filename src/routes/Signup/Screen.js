@@ -14,17 +14,15 @@ class SignupScreen extends Component {
   }
 
   static navigationOptions = {
-    header: () => ({
-      title: 'Create account',
-      tintColor: '#FFF',
-      style: {
-        backgroundColor: '#007EE5'
-      },
-      titleStyle: {
-        fontFamily: 'OpenSans-Semibold',
-        fontSize: 17
-      }
-    })
+    title: 'Create account',
+    headerTintColor: '#FFF',
+    headerStyle: {
+      backgroundColor: '#007EE5'
+    },
+    headerTitleStyle: {
+      fontFamily: 'OpenSans-Semibold',
+      fontSize: 17
+    }
   }
 
   componentWillReceiveProps (nextProps) {

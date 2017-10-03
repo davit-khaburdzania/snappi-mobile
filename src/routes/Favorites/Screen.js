@@ -3,22 +3,22 @@ import { Image } from 'react-native'
 import { connect } from 'react-redux'
 import { AlertActions, UserActions, AttachmentActions } from 'app/store/actions'
 import { UserSelectors, AttachmentSelectors } from 'app/store/selectors'
-import { NavigationIcon } from 'app/components'
-import ImageUploader from 'app/components/ImageUploader/ImageUploader'
-import Attachments from './Attachments'
-import MenuIcon from './MenuIcon'
+import NavigationIcon from 'app/components/NavigationIcon/NavigationIcon'
+import Attachments from '../Attachments/Attachments'
+import MenuIcon from '../Attachments/MenuIcon'
+import addIcon from 'app/assets/img/add-icon.png'
 import logoImg from 'app/assets/img/logo.png'
 
 let connectProps = { ...AlertActions, ...UserActions, ...AttachmentActions }
 let connectState = (state, props) => ({
   currentUser: UserSelectors.current(state),
-  attachments: AttachmentSelectors.list(state, props.navigation.state.params.filter)
+  attachments: AttachmentSelectors.favorites(state)
 })
 let enhancer = connect(connectState, connectProps)
 
 class AttachmentsScreen extends Component {
   static propTypes = {
-    getAttachments: PropTypes.func.isRequired,
+    getFavorites: PropTypes.func.isRequired,
     navigation: PropTypes.object.isRequired
   }
 
@@ -29,13 +29,11 @@ class AttachmentsScreen extends Component {
     },
     title: <Image source={logoImg} style={{ width: 35, height: 35 }} />,
     headerLeft: <MenuIcon />,
-    headerRight: <ImageUploader />
+    headerRight: <NavigationIcon image={addIcon} />
   }
 
   componentDidMount () {
-    const filter = this.props.navigation.state.params.filter
-
-    this.props.getAttachments(filter)
+    this.props.getFavorites()
   }
 
   render () {

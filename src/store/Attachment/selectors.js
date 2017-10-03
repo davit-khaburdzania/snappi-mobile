@@ -15,3 +15,13 @@ export const list = createSelector(
       .reverse()
   }
 )
+
+export const favorites = createSelector(
+  [all],
+  (attachments) => {
+    return attachments.toList()
+      .filter(attch => attch.featured)
+      .sortBy(attch => attch.created_at)
+      .reverse()
+  }
+)

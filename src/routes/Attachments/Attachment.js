@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity, StyleSheet, Clipboard } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import TimeAgo from 'react-native-timeago'
-import copyIcon from 'assets/img/copy-icon.png'
-import noImage from 'assets/img/no-image.png'
+import copyIcon from 'app/assets/img/copy-icon.png'
+import noImage from 'app/assets/img/no-image.png'
 
 class Attachment extends Component {
   onPress () {

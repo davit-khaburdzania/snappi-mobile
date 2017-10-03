@@ -9,6 +9,7 @@ export default () => next => action => {
         let response = error.response
 
         if (response && (response.data || response.statusText)) {
+          console.log(response.data)
           return dispatch(AlertActions.addAlert('error',
             response.data
               ? response.data.errors.full_messages || response.data.errors

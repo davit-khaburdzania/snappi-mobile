@@ -9,6 +9,7 @@ import Login from './Login'
 let connectProps = { ...UserActions, ...AlertActions }
 let connectState = state => ({ currentUser: UserSelectors.current(state) })
 let enhancer = connect(connectState, connectProps)
+console.log('login screen')
 
 class LoginScreen extends Component {
   static propTypes = {
@@ -17,9 +18,7 @@ class LoginScreen extends Component {
   }
 
   static navigationOptions = {
-    header: () => ({
-      visible: false
-    })
+    header: null
   }
 
   componentWillMount () {

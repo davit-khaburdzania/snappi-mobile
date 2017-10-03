@@ -13,14 +13,12 @@ const enhancer = connect(connectState, connectProps)
 
 class AttachmentInfoScreen extends Component {
   static navigationOptions = {
-    header: () => ({
-      tintColor: '#FFF',
-      style: {
-        backgroundColor: '#007EE5'
-      },
-      backTitle: null,
-      title: 'Info'
-    })
+    headerTintColor: '#FFF',
+    headerStyle: {
+      backgroundColor: '#007EE5'
+    },
+    headerBackTitle: null,
+    title: 'Info'
   }
 
   render () {

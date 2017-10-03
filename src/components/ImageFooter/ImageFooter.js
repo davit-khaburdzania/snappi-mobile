@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import { View, StyleSheet, Image, TouchableOpacity, Clipboard } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import garbageIcon from 'assets/img/garbage-icon.png'
-import lockIcon from 'assets/img/lock-icon.png'
-import starIcon from 'assets/img/star-icon.png'
-import starIconActive from 'assets/img/star-icon-active.png'
-import copyIcon from 'assets/img/copy-white-icon.png'
+import garbageIcon from 'app/assets/img/garbage-icon.png'
+import lockIcon from 'app/assets/img/lock-icon.png'
+import starIcon from 'app/assets/img/star-icon.png'
+import starIconActive from 'app/assets/img/star-icon-active.png'
+import copyIcon from 'app/assets/img/copy-white-icon.png'
 
 const ImageFooter = ({ attachment, remove, updateAttachment }) => (
   <View style={styles.container}>

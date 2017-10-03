@@ -14,6 +14,7 @@ let connectState = state => ({
   currentUser: UserSelectors.current(state)
 })
 let enhancer = connect(connectState, connectProps)
+console.log('app')
 
 class App extends Component {
   static propTypes = {

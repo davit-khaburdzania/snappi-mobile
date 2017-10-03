@@ -13,15 +13,15 @@ export const getAttachments = (filter = '') => async dispatch => {
   dispatch({ type: 'RECEIVE_ATTACHMENT_METADATA', meta: Map(data.meta) })
 }
 
-// export const getFavorites = () => async dispatch => {
-//   const url = `${api.attachments()}?filter=${filter}`
-//   const { data } = await request.get(url)
+export const getFavorites = () => async dispatch => {
+  const url = `${api.attachments()}?featured=true`
+  const { data } = await request.get(url)
 
-//   const attachments = data.attachments.map(attch => ({...attch, base_url: data.meta.base_url}))
+  const attachments = data.attachments.map(attch => ({...attch, base_url: data.meta.base_url}))
 
-//   reduceAttachments(attachments, dispatch)
-//   dispatch({ type: 'RECEIVE_ATTACHMENT_METADATA', meta: Map(data.meta) })
-// }
+  reduceAttachments(attachments, dispatch)
+  dispatch({ type: 'RECEIVE_ATTACHMENT_METADATA', meta: Map(data.meta) })
+}
 
 export const removeAttachment = id => async dispatch => {
   await request.delete(api.attachment(id))
@@ -32,6 +32,16 @@ export const removeAttachment = id => async dispatch => {
 export const updateAttachment = (id, payload) => async dispatch => {
   const { data } = await request.put(api.attachment(id), payload)
 
+  reduceAttachments([data.attachment], dispatch)
+}
+
+export const uploadeImage = payload => async dispatch => {
+  const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+  const fd = new window.FormData()
+
+  fd.append('file', { uri: payload.uri, name: payload.name })
+
+  const { data } = await request.post(api.attachments(), fd, config)
   reduceAttachments([data.attachment], dispatch)
 }
 

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import React, { PropTypes } from 'react'
 import { NavigationIcon } from 'app/components'
 import { AttachmentActions } from 'app/store/actions'
-import menuIcon from 'assets/img/menu-icon.png'
+import menuIcon from 'app/assets/img/menu-icon.png'
 
 const connectProps = { ...AttachmentActions }
 const enhancer = connect(null, connectProps)

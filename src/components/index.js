@@ -4,6 +4,7 @@ import Alert from './Alert/Alert'
 import NavigationIcon from './NavigationIcon/NavigationIcon'
 import ImageFooter from './ImageFooter/ImageFooter'
 import SideMenu from './SideMenu/SideMenu'
+import ImageUploader from './ImageUploader/ImageUploader'
 
 export {
   App,
@@ -11,5 +12,6 @@ export {
   Alert,
   NavigationIcon,
   ImageFooter,
-  SideMenu
+  SideMenu,
+  ImageUploader
 }

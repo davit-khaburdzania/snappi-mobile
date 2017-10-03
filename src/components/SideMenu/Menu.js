@@ -9,14 +9,14 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-import windowsIcon from 'assets/img/windows-icon.png'
-import starIcon from 'assets/img/star-icon.png'
-import imageIcon from 'assets/img/image-icon.png'
-import gifIcon from 'assets/img/gif-icon.png'
-import videoIcon from 'assets/img/video-icon.png'
-import arrowRightIcon from 'assets/img/arrow-right-icon.png'
-import arrowRightBlueIcon from 'assets/img/arrow-right-blue-icon.png'
-import logoImage from 'assets/img/logo.png'
+import windowsIcon from 'app/assets/img/windows-icon.png'
+import starIcon from 'app/assets/img/star-icon.png'
+import imageIcon from 'app/assets/img/image-icon.png'
+import gifIcon from 'app/assets/img/gif-icon.png'
+import videoIcon from 'app/assets/img/video-icon.png'
+import arrowRightIcon from 'app/assets/img/arrow-right-icon.png'
+import arrowRightBlueIcon from 'app/assets/img/arrow-right-blue-icon.png'
+import logoImage from 'app/assets/img/logo.png'
 
 class Menu extends Component {
   static propTypes = {
@@ -27,16 +27,16 @@ class Menu extends Component {
   }
 
   goto (filter) {
-    if (filter === 'favorites') {
-      return console.log('go to favorites')
-    }
-
-    this.props.navigate({
-      routeName: 'Attachments',
-      params: { filter }
-    })
-
     this.props.setMenu(false)
+
+    if (filter === 'favorites') {
+      this.props.navigate({ routeName: 'Favorites' })
+    } else {
+      this.props.navigate({
+        routeName: 'Attachments',
+        params: { filter }
+      })
+    }
   }
 
   render () {
